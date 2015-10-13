@@ -19,8 +19,8 @@ public class IAnalysis {
 		}
 		ICombinatoricsVector<Integer> vin = Factory.createVector(vin_arr);
 		Generator<Integer> generator = Factory.createPermutationWithRepetitionGenerator(vin, n);
-		Map<Integer, Integer> counter = new HashMap<>(l);
-		Set<Integer> lSet = new HashSet<>();
+		final Map<Integer, Integer> counter = new HashMap<>(l);
+		final Set<Integer> lSet = new HashSet<>();
 		for (int i = 1; i <= l; i++) {
 			lSet.add(i);
 			counter.put(i, 0);
