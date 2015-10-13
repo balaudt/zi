@@ -1,6 +1,10 @@
 package zi.chef.y15.octLong;
 import java.io.BufferedReader;
+import java.io.FileDescriptor;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -40,6 +44,7 @@ public class E {
 			3499, 3511, 3517, 3527, 3529, 3533, 3539, 3541, 3547, 3557, 3559, 3571, 3581, 3583, 3593, 3607, 3613, 3617, 3623, 3631,
 			3637, 3643, 3659, 3671 };
 	public static final int PRIMES_LAST = PRIMES[PRIMES.length - 1];
+	static final boolean[] PRIME_HYPO = new boolean[PRIMES.length];
 	static final int MAX_VAL = (int) 5e6;
 	static final Set<Integer> allHypos = new HashSet<>(524288);
 
@@ -84,29 +89,31 @@ public class E {
 				break;
 			lastGens = nextGens;
 		}
-		ArrayList<Integer> temp = new ArrayList<>(allHypos);
-		for (Integer hypo : temp) {
-			int cur = hypo;
-			int count = 2;
-			while (cur <= MAX_VAL) {
-				allHypos.add(cur);
-				cur = hypo * count++;
-			}
-		}
 	}
 
 	public static void main(String[] args) throws Exception {
+		System.setIn(new FileInputStream("C:/ft/E-gen-large.in"));
+		System.setOut(new PrintStream("C:/ft/E-gen-large.out"));
+		long ct = System.currentTimeMillis();
 		generateTriplets();
-		System.out.println(allHypos.contains(50));
+		for (int i = 0; i < PRIMES.length; i++) {
+			PRIME_HYPO[i] = allHypos.contains(PRIMES[i]);
+		}
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		int t = Integer.parseInt(reader.readLine());
 		for (int i = 0; i < t; i++) {
 			int n = Integer.parseInt(reader.readLine());
-			if (allHypos.contains(n))
+			if (allHypos.contains(n)) {
+				System.out.println("YES");
+				continue;
+			}
+			if (trialDivision(n))
 				System.out.println("YES");
 			else
 				System.out.println("NO");
 		}
+		System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
+		System.out.println(System.currentTimeMillis() - ct);
 		reader.close();
 	}
 
@@ -114,7 +121,7 @@ public class E {
 		for (int i = 0; i < PRIMES.length; i++) {
 			int p = PRIMES[i];
 			if (0 == n % p) {
-				if (allHypos.contains(p))
+				if (PRIME_HYPO[i])
 					return true;
 				n /= p;
 				while (0 == n % p) {
