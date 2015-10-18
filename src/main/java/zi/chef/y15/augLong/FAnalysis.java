@@ -1,4 +1,4 @@
-package tostream;
+package zi.chef.y15.augLong;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Arrays;
@@ -8,7 +8,7 @@ import java.util.Map.Entry;
 import java.util.Random;
 import java.util.TreeMap;
 
-import org.apache.commons.lang.text.StrBuilder;
+import org.apache.commons.lang3.text.StrBuilder;
 
 public class FAnalysis {
 	static void modPerfAnalysis() {

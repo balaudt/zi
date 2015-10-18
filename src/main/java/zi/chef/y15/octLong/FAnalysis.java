@@ -1,4 +1,4 @@
-package chef.octlong;
+package zi.chef.y15.octLong;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.util.ArrayList;
@@ -8,12 +8,14 @@ import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.apache.commons.lang.text.StrBuilder;
+import org.apache.commons.lang3.text.StrBuilder;
 import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
 
 import com.google.common.primitives.Chars;
+
+import zi.euler.Permutation;
 
 public class FAnalysis {
 
