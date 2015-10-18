@@ -1,13 +1,10 @@
-package tostream;
+package zi.chef.y15.augLong;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.io.FileReader;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Deque;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -166,70 +163,3 @@ public class G {
 	}
 }
 
-class Vertex {
-	int no;
-	Map<Integer, Integer> adjList = new HashMap<>();
-	Color c = Color.WHITE;
-
-	public Vertex(int no) {
-		this.no = no;
-	}
-
-	@Override
-	public String toString() {
-		return "V[n=" + no + ",c=" + c + "]";
-	}
-
-}
-
-enum Color {
-	WHITE, GREY, BLACK;
-}
-
-class GNum {
-	int no;
-	int insertPos;
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + insertPos;
-		result = prime * result + no;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		GNum other = (GNum) obj;
-		if (insertPos != other.insertPos)
-			return false;
-		if (no != other.no)
-			return false;
-		return true;
-	}
-
-	public GNum(int no, int insertPos) {
-		this.no = no;
-		this.insertPos = insertPos;
-	}
-
-	static final Comparator<GNum> NUMBER_COMPARATOR = (GNum l, GNum r) -> {
-		return l.no - r.no;
-	};
-	static final Comparator<GNum> INDEX_COMPARATOR = (GNum l, GNum r) -> {
-		return l.insertPos - r.insertPos;
-	};
-
-	@Override
-	public String toString() {
-		return "G[n=" + no + ",i=" + insertPos + "]";
-	}
-
-}

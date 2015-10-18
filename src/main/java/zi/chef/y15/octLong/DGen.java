@@ -1,9 +1,9 @@
-package chef.jullong;
+package zi.chef.y15.octLong;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.util.Random;
 
-import org.apache.commons.lang.text.StrBuilder;
+import org.apache.commons.lang3.text.StrBuilder;
 
 public class DGen {
 

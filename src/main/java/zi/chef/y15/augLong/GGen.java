@@ -1,4 +1,4 @@
-package tostream;
+package zi.chef.y15.augLong;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -7,10 +7,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-import org.apache.commons.lang.text.StrBuilder;
+import org.apache.commons.lang3.text.StrBuilder;
 
-import chef.jullong.GraphUtil;
 import edu.uci.ics.jung.graph.UndirectedSparseGraph;
+import zi.common.GraphUtil;
 
 public class GGen {
 

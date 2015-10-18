@@ -1,4 +1,4 @@
-package chef.octlong;
+package zi.chef.y15.octLong;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.util.Random;
