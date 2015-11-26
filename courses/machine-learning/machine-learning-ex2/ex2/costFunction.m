@@ -8,7 +8,10 @@ function [J, grad] = costFunction(theta, X, y)
 m = length(y); % number of training examples
 
 % You need to return the following variables correctly
-h=sigmoid(X*theta);
+X_norm=X(:,2:size(X,2));
+X_norm = bsxfun(@rdivide,bsxfun(@minus,X_norm,mean(X_norm)),std(X_norm));
+X_norm = [ones(m, 1) X_norm];
+h=sigmoid(X_norm*theta);
 J = sum(-y.*log(h)-(1-y).*log(1-h))/m;
 grad = theta-(1/m).*(X'*(h-y));
 
