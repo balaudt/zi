@@ -7,13 +7,10 @@ function [J, grad] = costFunction(theta, X, y)
 % Initialize some useful values
 m = length(y); % number of training examples
 
-% You need to return the following variables correctly
-X_norm=X(:,2:size(X,2));
-X_norm = bsxfun(@rdivide,bsxfun(@minus,X_norm,mean(X_norm)),std(X_norm));
-X_norm = [ones(m, 1) X_norm];
-h=sigmoid(X_norm*theta);
+% You need to return the following variables correc
+h=sigmoid(X*theta);
 J = sum(-y.*log(h)-(1-y).*log(1-h))/m;
-grad = theta-(1/m).*(X'*(h-y));
+grad = (X'*(h-y))/m;
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: Compute the cost of a particular choice of theta.

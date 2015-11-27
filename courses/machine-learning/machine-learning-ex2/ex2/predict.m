@@ -7,17 +7,12 @@ function p = predict(theta, X)
 m = size(X, 1); % Number of training examples
 
 % You need to return the following variables correctly
-X=X(:,2:size(X,2));
-mu = mean(X);
-sigma = std(X);
-X_norm = bsxfun(@rdivide,bsxfun(@minus,X,mean(X)),std(X));
-X = [ones(m, 1) X_norm];
-p=sigmoid(X*theta);
-if(p>=0.5)
-  p=1;
-else
-  p=0;
-endif;
+p=zeros(m,1);
+prediction=sigmoid(X*theta);
+for i=1:m
+  if(prediction(i)>=0.5)
+    p(i)=1;
+endif
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: Complete the following code to make predictions using
