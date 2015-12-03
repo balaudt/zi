@@ -25,7 +25,6 @@ Theta2 = reshape(nn_params((1 + (hidden_layer_size * (input_layer_size + 1))):en
 % Setup some useful variables
 m = size(X, 1);
 a1=sigmoid(Theta1*[ones(m,1) X]')';
-disp(size(a1));
 h=sigmoid(Theta2*[ones(size(a1,1),1) a1]')';
 J = 0;
 sdelta3=zeros(num_labels,m);
@@ -34,6 +33,9 @@ for i=1:num_labels
   J+=sum(-yi.*log(h(:,i))-(1-yi).*log(1-h(:,i)))/m;
   sdelta3(i,:)=h(:,i)-yi;
 endfor
+disp(size(sdelta3));
+disp(size(Theta2));
+disp(size(Theta2(:,2:end)'*sdelta3));
 J+=lambda*sum(vec(Theta1(:,2:end)).^2)/(2*m);
 J+=lambda*sum(vec(Theta2(:,2:end)).^2)/(2*m);
 
