@@ -24,8 +24,10 @@ Theta2 = reshape(nn_params((1 + (hidden_layer_size * (input_layer_size + 1))):en
 
 % Setup some useful variables
 m = size(X, 1);
-a1=sigmoid(Theta1*[ones(m,1) X]')';
-h=sigmoid(Theta2*[ones(size(a1,1),1) a1]')';
+X=[ones(m,1) X];
+a2=sigmoid(Theta1*X')';
+a2=[ones(size(a2,1),1) a2];
+h=sigmoid(Theta2*a2')';
 J = 0;
 sdelta3=zeros(num_labels,m);
 for i=1:num_labels
@@ -33,16 +35,18 @@ for i=1:num_labels
   J+=sum(-yi.*log(h(:,i))-(1-yi).*log(1-h(:,i)))/m;
   sdelta3(i,:)=h(:,i)-yi;
 endfor
-disp(size(sdelta3));
-disp(size(Theta2));
-disp(size(Theta2(:,2:end)'*sdelta3));
-J+=lambda*sum(vec(Theta1(:,2:end)).^2)/(2*m);
-J+=lambda*sum(vec(Theta2(:,2:end)).^2)/(2*m);
+sdelta2=(Theta2(:,2:end)'*sdelta3).*sigmoidGradient(a2');
+Theta1(:,1)=zeros(size(Theta1,1),1);
+Theta2(:,1)=zeros(size(Theta2,1),1);
+J+=lambda*sum(vec(Theta1).^2)/(2*m);
+J+=lambda*sum(vec(Theta2).^2)/(2*m);
 
 % You need to return the following variables correctly
-Theta1_grad = zeros(size(Theta1));
-Theta2_grad = zeros(size(Theta2));
-
+Theta1_grad = sdelta2*X;
+Theta2_grad = sdelta3*a2;
+%disp(size(Theta1_grad));
+%disp(size(Theta2_grad));
+Theta1_grad = Theta1_grad(1:end-1,:);
 % ====================== YOUR CODE HERE ======================
 % Instructions: You should complete the code by working through the
 %               following parts.
