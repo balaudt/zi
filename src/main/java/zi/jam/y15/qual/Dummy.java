@@ -2,12 +2,22 @@ package zi.jam.y15.qual;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.Random;
 
 import org.apache.commons.lang3.text.StrBuilder;
 
+
 public class Dummy {
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
+		long ct = System.currentTimeMillis();
+		Random random = new Random();
+		for (int i = 0; i < 66438561;i++){
+			random.nextInt();
+		}
+		System.out.println(System.currentTimeMillis()-ct);
+	}
+	public static void tetranomino(String[] args) throws Exception {
 		BufferedReader reader = new BufferedReader(new FileReader("C:/Users/c0chaba/Desktop/tetranomino.txt"));
 		String line = reader.readLine();
 		StrBuilder builder = new StrBuilder();
