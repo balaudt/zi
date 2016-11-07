@@ -26,7 +26,7 @@ import java.util.TreeSet;
  *  Space complexity is O(n^2) as the total number of requisites can be O(n^2) [O(n^2) for requisites+O(n) for op]
  *  
  * Building a dependency graph and running a topology sort can be more efficient.
- * Attempted the graph solution and was successful. Refer Solution
+ * Attempted the graph solution and was successful. Refer Solution1
  * 
  */
 class FirstSolution {

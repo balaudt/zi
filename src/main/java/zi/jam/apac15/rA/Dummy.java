@@ -24,7 +24,10 @@ public class Dummy {
 		System.out.println(maxLen);
 	}
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
+		System.out.println('a'-'A');
+	}
+	public static void fk(String[] args) throws Exception {
 		BufferedReader reader = new BufferedReader(
 				new FileReader("/Users/balaudt/Dev/PlayGround/xldrx/cloudapp-mp1/input.txt"));
 		String delimiters = "[\\t\\,;\\.\\?\\!\\-\\:@\\[\\]\\(\\)\\{\\}\\_\\*/]";

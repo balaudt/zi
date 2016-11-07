@@ -5,48 +5,45 @@ import java.io.FileReader;
 import java.util.Random;
 
 import org.apache.commons.lang3.text.StrBuilder;
+import org.apache.commons.math3.primes.Primes;
 
 
 public class Dummy {
 
-	public static void main(String[] args) {
-		long ct = System.currentTimeMillis();
-		Random random = new Random();
-		for (int i = 0; i < 66438561;i++){
-			random.nextInt();
-		}
-		System.out.println(System.currentTimeMillis()-ct);
-	}
-	public static void tetranomino(String[] args) throws Exception {
-		BufferedReader reader = new BufferedReader(new FileReader("C:/Users/c0chaba/Desktop/tetranomino.txt"));
-		String line = reader.readLine();
-		StrBuilder builder = new StrBuilder();
-		builder.append("ImmutableSet.<int[][]> of(");
-		while (line != null) {
-			if (line.trim().isEmpty()) {
-				builder.deleteCharAt(builder.length() - 1).append(");");
-				System.out.println(builder.toString());
-				builder.clear().append("ImmutableSet.<int[][]> of(");
-				line = reader.readLine();
-				continue;
-			}
-			builder.append("new int[][]{");
-			String[] split = line.split(" ");
-			for (int i = 0; i < split.length; i++) {
-				builder.append("{").append(split[i]).append("}").append(",");
-			}
-			builder.deleteCharAt(builder.length() - 1).append("},");
-			line = reader.readLine();
-		}
-		reader.close();
-	}
+    public static void main(String[] args) {
+        System.out.println(Primes.primeFactors(16169));
+    }
+
+    public static void tetranomino(String[] args) throws Exception {
+        BufferedReader reader = new BufferedReader(new FileReader("C:/Users/c0chaba/Desktop/tetranomino.txt"));
+        String line = reader.readLine();
+        StrBuilder builder = new StrBuilder();
+        builder.append("ImmutableSet.<int[][]> of(");
+        while (line != null) {
+            if (line.trim().isEmpty()) {
+                builder.deleteCharAt(builder.length() - 1).append(");");
+                System.out.println(builder.toString());
+                builder.clear().append("ImmutableSet.<int[][]> of(");
+                line = reader.readLine();
+                continue;
+            }
+            builder.append("new int[][]{");
+            String[] split = line.split(" ");
+            for (int i = 0; i < split.length; i++) {
+                builder.append("{").append(split[i]).append("}").append(",");
+            }
+            builder.deleteCharAt(builder.length() - 1).append("},");
+            line = reader.readLine();
+        }
+        reader.close();
+    }
 }
 
 class AB {
-	static String str = "A";
+    static String str = "A";
 }
 
 class BA extends AB {
-	static String str = "B";
+    static String str = "B";
 
 }
