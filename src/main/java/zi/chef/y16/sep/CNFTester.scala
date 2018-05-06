@@ -4,7 +4,7 @@ import scala.io.Source
 import java.util
 
 import edu.uci.ics.jung.graph.UndirectedSparseGraph
-import zi.common.GraphUtil
+import zi.common.archive.GraphUtil
 
 import scala.collection.mutable
 

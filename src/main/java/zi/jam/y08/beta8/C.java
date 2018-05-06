@@ -1,5 +1,11 @@
 package zi.jam.y08.beta8;
 
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
+import edu.uci.ics.jung.graph.DirectedSparseMultigraph;
+import edu.uci.ics.jung.graph.Graph;
+import edu.uci.ics.jung.graph.util.EdgeType;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -11,15 +17,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import org.apache.commons.lang3.text.StrBuilder;
-
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.Multimap;
-
-import edu.uci.ics.jung.graph.DirectedSparseMultigraph;
-import edu.uci.ics.jung.graph.Graph;
-import edu.uci.ics.jung.graph.util.EdgeType;
 
 public class C {
 
@@ -85,7 +82,7 @@ public class C {
 			}
 
 			// Output
-			StrBuilder builder = new StrBuilder("Case #").append(i + 1).append(": ");
+			StringBuilder builder = new StringBuilder("Case #").append(i + 1).append(": ");
 			for (int j = 0; j < n; j++) {
 				if (answer.containsKey(j))
 					builder.append(String.format("%.7f",answer.get(j)));

@@ -1,5 +1,9 @@
 package zi.jam.apac15.rA;
 
+import org.apache.commons.collections4.BidiMap;
+import org.apache.commons.collections4.bidimap.DualHashBidiMap;
+import org.apache.commons.lang3.text.StrBuilder;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -16,10 +20,6 @@ import java.util.Stack;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.apache.commons.collections15.BidiMap;
-import org.apache.commons.collections15.bidimap.DualHashBidiMap;
-import org.apache.commons.lang3.text.StrBuilder;
 
 public class Addition {
 

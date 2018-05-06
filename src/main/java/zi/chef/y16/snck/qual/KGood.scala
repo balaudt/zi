@@ -4,6 +4,7 @@ import java.io.PrintStream
 import java.util
 
 import scala.collection.mutable
+import scala.io
 
 /**
   * Created by balaudt on 5/28/16.

@@ -10,7 +10,7 @@ import java.util.Scanner;
  */
 public class GopherInteractor {
 	public static void main(String[] args) throws IOException {
-		Process exec = Runtime.getRuntime().exec("java -cp /Users/balamurugan/source/playground/path/target/classes zi.jam.GoGopher");
+		Process exec = Runtime.getRuntime().exec("java -cp /Users/balamurugan/source/playground/zi/target/classes zi.jam.y18.qual.GoGopher");
 		PrintStream interPs = new PrintStream(exec.getOutputStream());
 		Scanner scanner = new Scanner(exec.getInputStream());
 		Random random = new Random();

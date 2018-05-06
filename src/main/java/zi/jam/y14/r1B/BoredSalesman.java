@@ -1,6 +1,14 @@
 package zi.jam.y14.r1B;
 
-import java.awt.Dimension;
+import edu.uci.ics.jung.algorithms.layout.KKLayout;
+import edu.uci.ics.jung.algorithms.layout.Layout;
+import edu.uci.ics.jung.graph.Graph;
+import edu.uci.ics.jung.graph.UndirectedSparseMultigraph;
+import edu.uci.ics.jung.visualization.BasicVisualizationServer;
+import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
+
+import javax.swing.*;
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -14,15 +22,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import javax.swing.JFrame;
-
-import edu.uci.ics.jung.algorithms.layout.KKLayout;
-import edu.uci.ics.jung.algorithms.layout.Layout;
-import edu.uci.ics.jung.graph.Graph;
-import edu.uci.ics.jung.graph.UndirectedSparseMultigraph;
-import edu.uci.ics.jung.visualization.BasicVisualizationServer;
-import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 
 public class BoredSalesman {
 	static Graph<City, Integer> cityMap;
@@ -93,7 +92,7 @@ public class BoredSalesman {
 		layout.setSize(new Dimension(300, 300));
 		BasicVisualizationServer<V, E> vv = new BasicVisualizationServer<V, E>(layout);
 		vv.setPreferredSize(new Dimension(350, 350));
-		vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller<V>());
+		vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
 
 		JFrame frame = new JFrame("Graph");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

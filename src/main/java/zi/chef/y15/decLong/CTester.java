@@ -1,7 +1,11 @@
 package zi.chef.y15.decLong;
-import java.awt.Color;
-import java.awt.Paint;
-import java.awt.event.WindowEvent;
+
+import edu.uci.ics.jung.graph.DelegateTree;
+import org.apache.commons.collections4.ListUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.text.StrBuilder;
+
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -9,17 +13,6 @@ import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.util.Collection;
 import java.util.HashSet;
-
-import javax.swing.JFrame;
-
-import org.apache.commons.collections15.Transformer;
-import org.apache.commons.collections4.ListUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.text.StrBuilder;
-
-import edu.uci.ics.jung.algorithms.layout.TreeLayout;
-import edu.uci.ics.jung.graph.DelegateTree;
-import zi.common.GraphUtil;
 
 public class CTester {
 	static int n, m;

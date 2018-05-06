@@ -3,6 +3,7 @@ package zi.chef.y16.may
 import java.io.{FileWriter, PrintStream}
 
 import scala.util.Random
+import scala.io
 
 /**
   * Created by balaudt on 5/7/16.

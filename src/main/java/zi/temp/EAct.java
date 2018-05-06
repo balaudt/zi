@@ -6,7 +6,7 @@ import java.util.BitSet;
 import java.util.Collections;
 import java.util.List;
 
-import zi.common.SegmentTree;
+import zi.common.archive.SegmentTree;
 
 public class EAct {
 	static final String FOLDER = "C:/ft/37/";

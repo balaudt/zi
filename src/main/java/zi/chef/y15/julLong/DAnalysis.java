@@ -1,6 +1,6 @@
 package zi.chef.y15.julLong;
 import edu.uci.ics.jung.graph.DelegateTree;
-import zi.common.GraphUtil;
+import zi.common.archive.GraphUtil;
 
 public class DAnalysis {
 

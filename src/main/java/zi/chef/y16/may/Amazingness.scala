@@ -2,6 +2,7 @@ package zi.chef.y16.may
 
 import scala.collection.mutable
 import scala.collection.mutable.ArrayBuffer
+import scala.io.Source
 import scala.util.Random
 
 /**
@@ -45,7 +46,7 @@ object Amazingness extends App {
   }
 //  println(System.currentTimeMillis() - ct)
 
-  val lineIt = io.Source.fromInputStream(System.in).getLines()
+  val lineIt = Source.fromInputStream(System.in).getLines()
   val t = lineIt.next().toInt
   for (i <- 1 to t) {
     val lr = lineIt.next().split(" ").map(_.toInt)

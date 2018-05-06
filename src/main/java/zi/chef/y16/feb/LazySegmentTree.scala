@@ -2,7 +2,7 @@ package zi.chef.y16.feb
 
 import edu.uci.ics.jung.algorithms.layout.TreeLayout
 import edu.uci.ics.jung.graph.DelegateTree
-import zi.common.GraphUtil
+import zi.common.archive.GraphUtil
 
 import scala.collection.mutable
 
@@ -154,7 +154,7 @@ class LazySegmentTree[L, I, U](initData: Array[L], map: L => I, reduce: (I, I) =
     g.addVertex(root.data)
     edCt = 0
     traverse(g, root)
-    GraphUtil.visualize(new TreeLayout[Data, Int](g), null)
+    GraphUtil.visualize(new TreeLayout[Data, Int](g))
   }
 
 }

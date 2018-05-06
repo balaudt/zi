@@ -5,6 +5,7 @@ import java.util
 
 import scala.collection.mutable
 import scala.collection.mutable.ArrayBuffer
+import scala.io.Source
 
 /**
   * Created by balaudt on 5/13/16.
@@ -54,7 +55,7 @@ object AnotherMath extends App {
     }
   }
 
-  val lineIt = io.Source.fromInputStream(System.in).getLines()
+  val lineIt = Source.fromInputStream(System.in).getLines()
 //      val lineIt = io.Source.fromFile(new File("/Users/balaudt/Temp/may/Math.in")).getLines()
 //    System.setOut(new PrintStream("/Users/balaudt/Temp/may/math.out"))
   val q = lineIt.next().toInt

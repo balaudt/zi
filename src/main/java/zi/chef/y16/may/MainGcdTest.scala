@@ -4,6 +4,7 @@ import java.io.FileInputStream
 
 import scala.collection.mutable
 import java.util
+import scala.io
 
 /**
   * Created by balaudt on 5/15/16.

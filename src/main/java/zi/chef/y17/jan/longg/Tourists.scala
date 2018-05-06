@@ -87,6 +87,8 @@ object Tourists extends App {
           case Some(x) => x += toPersist._2.head
           case None => dirs += toPersist
         }
+        //https://issues.scala-lang.org/browse/SI-10151
+        Unit
       }
       println("YES")
       in.foreach(uv => {

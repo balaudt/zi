@@ -10,7 +10,7 @@ import java.util.Random;
 import org.apache.commons.lang3.text.StrBuilder;
 
 import edu.uci.ics.jung.graph.UndirectedSparseGraph;
-import zi.common.GraphUtil;
+import zi.common.archive.GraphUtil;
 
 public class GGen {
 

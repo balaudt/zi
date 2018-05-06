@@ -1,4 +1,4 @@
-package zi.common;
+package zi.common.archive;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

@@ -3,17 +3,12 @@ package zi.chef.y16.apr
 import java.io.{BufferedWriter, FileWriter, PrintStream}
 
 import edu.princeton.cs.algorithms.GraphGenerator
-import edu.uci.ics.jung.algorithms.layout.TreeLayout
 import edu.uci.ics.jung.algorithms.shortestpath.DijkstraDistance
-import edu.uci.ics.jung.graph.util.EdgeType
 import edu.uci.ics.jung.graph.{DelegateTree, UndirectedSparseGraph}
-import org.apache.commons.collections15.Transformer
-import zi.common.GraphUtil
+import org.apache.commons.collections4.Transformer
 
-import scala.Iterable
-import scala.collection.mutable._
 import scala.collection.JavaConverters._
-import scala.collection.mutable
+import scala.collection.mutable._
 import scala.io.Source
 import scala.util.Random
 
@@ -83,7 +78,7 @@ object AmazeExpTester extends App {
             graph.addEdge(v, u, tree.getOpposite(u, v))
           })
 
-          val dijkstra = new DijkstraDistance[Int, Tuple2[Int, Int]](graph, edgeTransformer)
+          val dijkstra = new DijkstraDistance[Int, (Int, Int)](graph)
           var stratCost = dijkstra.getDistanceMap(u).values().asScala.max.intValue()
           graph.getVertices.asScala.filter(tree.getPath(_).contains(u)).foreach(subNode => {
             val cost = dijkstra.getDistanceMap(subNode).values().asScala.max.intValue()
