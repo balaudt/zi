@@ -4,7 +4,7 @@ import edu.uci.ics.jung.algorithms.layout.KKLayout
 
 import scala.collection.mutable.ArrayBuffer
 import edu.uci.ics.jung.graph.DirectedSparseGraph
-import zi.common.GraphUtil
+import zi.common.archive.GraphUtil
 
 /**
   * Created by balaudt on 8/26/16.
@@ -49,6 +49,6 @@ object EdmondKarp extends App {
     val jg = new DirectedSparseGraph[Vertex, Edge]()
     g.vertices.foreach(jg.addVertex(_))
     g.edges.foreach(e => jg.addEdge(e, g.vertices(e.u), g.vertices(e.v)))
-    GraphUtil.visualize(new KKLayout[Vertex, Edge](jg), null)
+    GraphUtil.visualize(new KKLayout[Vertex, Edge](jg))
   }
 }

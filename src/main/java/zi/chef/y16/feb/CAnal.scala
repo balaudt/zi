@@ -2,8 +2,9 @@ package zi.chef.y16.feb
 
 import edu.uci.ics.jung.algorithms.layout.TreeLayout
 import edu.uci.ics.jung.algorithms.shortestpath.DijkstraDistance
-import edu.uci.ics.jung.graph.{UndirectedSparseGraph, DelegateTree}
-import zi.common.GraphUtil
+import edu.uci.ics.jung.graph.{DelegateTree, UndirectedSparseGraph}
+import zi.common.archive.GraphUtil
+
 import scala.collection.mutable
 import scala.util.control.Breaks._
 

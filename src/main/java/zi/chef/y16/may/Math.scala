@@ -3,6 +3,7 @@ package zi.chef.y16.may
 import java.util
 
 import scala.collection.JavaConverters._
+import scala.io
 import scala.collection.Searching._
 import org.paukov.combinatorics.Factory
 
@@ -22,6 +23,8 @@ object Math extends App {
         case Some(x) => x += scalPart
         case None => compositions += (i, scalPart.size) -> ListBuffer(scalPart)
       }
+      //https://issues.scala-lang.org/browse/SI-10151
+      Unit
     })
   }
 

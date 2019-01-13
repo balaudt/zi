@@ -1,43 +1,22 @@
 package zi.chef.y15.novLong;
 
-import java.util.HashSet;
-
-import org.apache.commons.collections15.Factory;
-
 import edu.uci.ics.jung.algorithms.generators.random.BarabasiAlbertGenerator;
 import edu.uci.ics.jung.graph.DelegateForest;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
-import zi.common.GraphUtil;
+import zi.common.archive.GraphUtil;
+
+import java.util.HashSet;
 
 public class EGen {
 
 	static int vc = 0;
 	static int ec = 0;
 
-	public static void main(String[] args) throws Exception {
-		BarabasiAlbertGenerator<Integer, Integer> generator = new BarabasiAlbertGenerator<>(
-				new Factory<Graph<Integer, Integer>>() {
-
-					@Override
-					public Graph<Integer, Integer> create() {
-						return new DelegateForest<>();
-					}
-				}, new Factory<Integer>() {
-
-					@Override
-					public Integer create() {
-						return vc++;
-					}
-				}, new Factory<Integer>() {
-
-					@Override
-					public Integer create() {
-						return ec++;
-					}
-				}, 5, 5, new HashSet<>());
+	public static void main(String[] args) {
+		BarabasiAlbertGenerator<Integer, Integer> generator = new BarabasiAlbertGenerator<>(DelegateForest::new, () -> vc++, () -> ec++, 5, 5, new HashSet<>());
 		generator.evolveGraph(19);
-		Graph<Integer, Integer> graph = generator.create();
+		Graph<Integer, Integer> graph = generator.get();
 		//		GraphUtil.printTree(graph, new TreeLayout<Integer, Integer>((Forest<Integer, Integer>) graph));
 		GraphUtil.printTree(graph);
 

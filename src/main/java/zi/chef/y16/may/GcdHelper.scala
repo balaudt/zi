@@ -7,6 +7,7 @@ import org.paukov.combinatorics.Factory
 
 import scala.collection.JavaConverters._
 import scala.util.Random
+import scala.io
 
 /**
   * Created by balaudt on 5/15/16.

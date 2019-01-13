@@ -1,14 +1,4 @@
-package zi.common;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-
-import org.apache.commons.collections15.Transformer;
+package zi.common.archive;
 
 import edu.uci.ics.jung.algorithms.layout.KKLayout;
 import edu.uci.ics.jung.algorithms.layout.Layout;
@@ -21,6 +11,9 @@ import edu.uci.ics.jung.visualization.control.ModalGraphMouse;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 import edu.uci.ics.jung.visualization.renderers.Renderer.VertexLabel.Position;
 
+import javax.swing.*;
+import java.awt.*;
+
 public class GraphUtil {
 
     public static <V, E> void printTree(Graph<V, E> tree) {
@@ -32,10 +25,9 @@ public class GraphUtil {
             layout = new KKLayout<V, E>(tree);
         BasicVisualizationServer<V, E> vs = new BasicVisualizationServer<V, E>(layout, new Dimension(1100, 640));
         RenderContext<V, E> renderContext = vs.getRenderContext();
-        Transformer<E, String> transformer = new ToStringLabeller<E>();
-        renderContext.setEdgeLabelTransformer(transformer);
-        Transformer<V, String> vertexTransformer = new ToStringLabeller<V>();
-        renderContext.setVertexLabelTransformer(vertexTransformer);
+        ToStringLabeller toStringLabeller = new ToStringLabeller();
+        renderContext.setEdgeLabelTransformer(toStringLabeller);
+        renderContext.setVertexLabelTransformer(toStringLabeller);
         vs.getRenderer().getVertexLabelRenderer().setPosition(Position.CNTR);
         JFrame frame = new JFrame();
         frame.getContentPane().add(vs);
@@ -44,20 +36,19 @@ public class GraphUtil {
         frame.setVisible(true);
     }
 
-    public static <V, Ed> JFrame visualize(Layout<V, Ed> layout, Transformer<V, Paint> vertexFill) {
+    public static <V, Ed> JFrame visualize(Layout<V, Ed> layout) {
         VisualizationViewer<V, Ed> vv = new VisualizationViewer<V, Ed>(layout);
-        vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller<>());
-        vv.getRenderContext().setEdgeLabelTransformer(new ToStringLabeller<>());
+        ToStringLabeller toStringLabeller = new ToStringLabeller();
+        vv.getRenderContext().setVertexLabelTransformer(toStringLabeller);
+        vv.getRenderContext().setEdgeLabelTransformer(toStringLabeller);
         DefaultModalGraphMouse<V, Ed> gm = new DefaultModalGraphMouse<>();
         gm.setMode(ModalGraphMouse.Mode.TRANSFORMING);
         vv.setGraphMouse(gm);
-        if (vertexFill != null)
-            vv.getRenderContext().setVertexFillPaintTransformer(vertexFill);
 
         JFrame frame = new JFrame();
         frame.getContentPane().add(vv);
 //        frame.pack();
-        frame.setSize(30000,500);
+        frame.setSize(30000, 500);
         frame.setVisible(true);
 
         /*Container c = frame.getContentPane();
@@ -70,11 +61,11 @@ public class GraphUtil {
         }*/
         return frame;
 
-		/*GraphVisualizer graphVisualizer = new GraphVisualizer();
-		graphVisualizer.vvholder.add(vv);
-		graphVisualizer.pack();
-		graphVisualizer.setVisible(true);
-		return graphVisualizer;*/
+        /*GraphVisualizer graphVisualizer = new GraphVisualizer();
+        graphVisualizer.vvholder.add(vv);
+        graphVisualizer.pack();
+        graphVisualizer.setVisible(true);
+        return graphVisualizer;*/
     }
 
 }

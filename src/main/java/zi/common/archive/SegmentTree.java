@@ -1,11 +1,4 @@
-package zi.common;
-
-import java.awt.Dimension;
-import java.lang.reflect.Array;
-
-import javax.swing.JFrame;
-
-import org.apache.commons.collections15.Transformer;
+package zi.common.archive;
 
 import edu.uci.ics.jung.algorithms.layout.FRLayout2;
 import edu.uci.ics.jung.graph.DelegateTree;
@@ -13,6 +6,10 @@ import edu.uci.ics.jung.visualization.RenderContext;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 import edu.uci.ics.jung.visualization.renderers.Renderer.VertexLabel.Position;
+
+import javax.swing.*;
+import java.awt.*;
+import java.lang.reflect.Array;
 
 public abstract class SegmentTree<N> {
 	public N[] getNodes() {
@@ -94,10 +91,9 @@ public abstract class SegmentTree<N> {
 		//		BasicVisualizationServer<N, Integer> vs = new BasicVisualizationServer<N, Integer>(new FRLayout2<N, Integer>(drawTree),
 		//				new Dimension(1100, 640));
 		RenderContext<N, Integer> renderContext = vv.getRenderContext();
-		Transformer<Integer, String> transformer = new ToStringLabeller<Integer>();
-		renderContext.setEdgeLabelTransformer(transformer);
-		Transformer<N, String> vertexTransformer = new ToStringLabeller<N>();
-		renderContext.setVertexLabelTransformer(vertexTransformer);
+		ToStringLabeller stringLabeller = new ToStringLabeller();
+		renderContext.setEdgeLabelTransformer(stringLabeller);
+		renderContext.setVertexLabelTransformer(stringLabeller);
 		vv.getRenderer().getVertexLabelRenderer().setPosition(Position.CNTR);
 		JFrame frame = new JFrame();
 		frame.getContentPane().add(vv);

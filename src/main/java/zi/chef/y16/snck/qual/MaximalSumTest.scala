@@ -3,6 +3,7 @@ package zi.chef.y16.snck.qual
 import java.io.PrintStream
 
 import scala.util.Random
+import scala.io
 
 /**
   * Created by balaudt on 5/28/16.

@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 import edu.uci.ics.jung.graph.DelegateForest;
-import zi.common.GraphUtil;
+import zi.common.archive.GraphUtil;
 
 //import edu.uci.ics.jung.algorithms.layout.TreeLayout;
 //import edu.uci.ics.jung.graph.DelegateForest;
