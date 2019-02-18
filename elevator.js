@@ -66,6 +66,10 @@ module.exports = {
     },
     passingFloor: (elevator, index, floor, dir) => {
         console.log(`event=pass_floor; index=${index}; floor=${floor}; dir=${dir}`);
+        if (_.indexOf(this.requestMap[dir], floor, true) !== -1) {
+            this.binaryInsert(elevator.destinationQueue, floor, elevator.destinationDirection() === 'down');
+            elevator.checkDestinationQueue();
+        }
     },
     stoppedAtFloor: (elevator, index, floor) => {
         console.log(`event=stop_floor; index=${index}; floor=${floor}`);
