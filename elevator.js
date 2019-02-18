@@ -13,10 +13,7 @@ module.exports = {
         if (elevator.getPressedFloors().length > 0) {
             let sortedPressedFloors = elevator.getPressedFloors();
             sortedPressedFloors.sort();
-            // let destFloor = Math.random() >= 0.5 ? sortedPressedFloors[0] : sortedPressedFloors[sortedPressedFloors.length] - 1;
-            let destFloor = Math.abs(elevator.currentFloor() - sortedPressedFloors[0]) <
-            Math.abs(elevator.currentFloor() - sortedPressedFloors[sortedPressedFloors.length - 1]) ?
-                sortedPressedFloors[0] : sortedPressedFloors[sortedPressedFloors.length - 1];
+            let destFloor = Math.random() >= 0.5 ? sortedPressedFloors[0] : sortedPressedFloors[sortedPressedFloors.length] - 1;
             let index = _.sortedIndex(sortedPressedFloors, elevator.currentFloor());
             if (elevator.currentFloor() > destFloor)
                 elevator.destinationQueue = sortedPressedFloors.slice(index);
@@ -51,10 +48,18 @@ module.exports = {
         }
     },
     buttonPressed: (floor, dir) => {
-        let floorNum = floor.floorNum();
+        let floorNum = floor.floorNum(), nearestIdle = null, elevatorIndex = -1, minDistance = Number.MAX_SAFE_INTEGER;
+        this.idleElevators.forEach((elevator, index) => {
+            let distance = Math.abs(floorNum - elevator.currentFloor());
+            if (distance < minDistance) {
+                nearestIdle = elevator;
+                elevatorIndex = index;
+                minDistance = distance;
+            }
+        });
         if (this.idleElevators.length !== 0) {
-            let idleElevator = this.idleElevators.shift();
-            idleElevator.goToFloor(floorNum);
+            this.idleElevators.splice(elevatorIndex, 1);
+            nearestIdle.goToFloor(floorNum);
         } else
             this.binaryInsert(this.requestMap[dir], floorNum, false);
     },
