@@ -13,6 +13,7 @@ module.exports = {
         if (elevator.getPressedFloors().length > 0) {
             let sortedPressedFloors = elevator.getPressedFloors();
             sortedPressedFloors.sort();
+            // let destFloor = Math.random() >= 0.5 ? sortedPressedFloors[0] : sortedPressedFloors[sortedPressedFloors.length] - 1;
             let destFloor = Math.abs(elevator.currentFloor() - sortedPressedFloors[0]) <
             Math.abs(elevator.currentFloor() - sortedPressedFloors[sortedPressedFloors.length - 1]) ?
                 sortedPressedFloors[0] : sortedPressedFloors[sortedPressedFloors.length - 1];
@@ -33,17 +34,19 @@ module.exports = {
             elevator.checkDestinationQueue();
     },
     passingFloor: (elevator, index, floor, dir) => {
-        if (_.indexOf(this.requestMap[dir], floor, true) !== -1) {
+        let searchIndex = _.indexOf(this.requestMap[dir], floor, true);
+        if (searchIndex !== -1) {
             this.binaryInsert(elevator.destinationQueue, floor, elevator.destinationDirection() === 'down');
             elevator.checkDestinationQueue();
+            this.requestMap[dir].splice(searchIndex, 1);
         }
     },
     stoppedAtFloor: (elevator, index, floor) => {
         let direction = elevator.destinationDirection();
         if (direction === 'down' || direction === 'up') {
-            let index = _.indexOf(this.requestMap[direction], floor, true);
-            if (index !== -1) {
-                this.requestMap[direction].splice(index, 1);
+            let searchIndex = _.indexOf(this.requestMap[direction], floor, true);
+            if (searchIndex !== -1) {
+                this.requestMap[direction].splice(searchIndex, 1);
             }
         }
     },
