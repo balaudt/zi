@@ -1,6 +1,7 @@
 module.exports = {
     idleElevators: [],
     requestMap: {"up": [], "down": []},
+    lastSelected: 'up',
     binaryInsert: (arr, ele, isReverse) => {
         let insertIndex = _.sortedIndex(arr, ele, i => isReverse ? -i : i);
         if (arr.length > insertIndex && arr[insertIndex] === ele) {
@@ -13,24 +14,44 @@ module.exports = {
         if (elevator.getPressedFloors().length > 0) {
             let sortedPressedFloors = elevator.getPressedFloors();
             sortedPressedFloors.sort();
-            let destFloor = Math.random() >= 0.5 ? sortedPressedFloors[0] : sortedPressedFloors[sortedPressedFloors.length] - 1;
+            let destFloor = elevator.lastSelected === 'up' ? sortedPressedFloors[0] : sortedPressedFloors[sortedPressedFloors.length] - 1;
+            elevator.lastSelected = elevator.lastSelected === 'up' ? 'down' : 'up';
             let index = _.sortedIndex(sortedPressedFloors, elevator.currentFloor());
             if (elevator.currentFloor() > destFloor)
                 elevator.destinationQueue = sortedPressedFloors.slice(index);
             else
                 elevator.destinationQueue = sortedPressedFloors.slice(0, index).reverse();
             elevator.checkDestinationQueue();
-        } else
-            this.idleElevators.push(elevator);
+        } else {
+            if (this.lastSelected === 'up') {
+                this.lastSelected = 'down';
+                if (this.requestMap['down'].length > 0) {
+                    let arr = this.requestMap['down'];
+                    elevator.goToFloor(arr[arr.length - 1]);
+                    arr.splice(arr.length - 1, 1);
+                } else {
+                    this.idleElevators.push(elevator);
+                }
+            } else {
+                this.lastSelected = 'up';
+                if (this.requestMap['up'].length > 0) {
+                    let arr = this.requestMap['up'];
+                    elevator.goToFloor(arr[0]);
+                    arr.splice(0, 1);
+                } else {
+                    this.idleElevators.push(elevator);
+                }
+            }
+        }
     },
-    floorButtonPressed: (elevator, index, floor) => {
+    floorButtonPressed: (elevator, floor) => {
         let shouldInsert = (elevator.destinationDirection() === 'up' && floor > elevator.currentFloor())
             || (elevator.destinationDirection() === 'down' && floor < elevator.currentFloor())
             || elevator.destinationDirection() === 'stopped';
         if (shouldInsert && this.binaryInsert(elevator.destinationQueue, floor, elevator.destinationDirection() === 'down'))
             elevator.checkDestinationQueue();
     },
-    passingFloor: (elevator, index, floor, dir) => {
+    passingFloor: (elevator, floor, dir) => {
         let searchIndex = _.indexOf(this.requestMap[dir], floor, true);
         if (searchIndex !== -1) {
             this.binaryInsert(elevator.destinationQueue, floor, elevator.destinationDirection() === 'down');
@@ -38,7 +59,7 @@ module.exports = {
             this.requestMap[dir].splice(searchIndex, 1);
         }
     },
-    stoppedAtFloor: (elevator, index, floor) => {
+    stoppedAtFloor: (elevator, floor) => {
         let direction = elevator.destinationDirection();
         if (direction === 'down' || direction === 'up') {
             let searchIndex = _.indexOf(this.requestMap[direction], floor, true);
@@ -66,10 +87,12 @@ module.exports = {
     init: (elevators, floors) => {
         this.elevators = elevators;
         elevators.forEach((elevator, index) => {
-            elevator.on("idle", () => this.idle(elevator, index));
-            elevator.on("floor_button_pressed", (floor) => this.floorButtonPressed(elevator, index, floor));
-            elevator.on("passing_floor", (floor, dir) => this.passingFloor(elevator, index, floor, dir));
-            elevator.on("stopped_at_floor", (floor) => this.stoppedAtFloor(elevator, index, floor));
+            elevator.index = index;
+            elevator.lastSelected = 'up';
+            elevator.on("idle", () => this.idle(elevator));
+            elevator.on("floor_button_pressed", (floor) => this.floorButtonPressed(elevator, floor));
+            elevator.on("passing_floor", (floor, dir) => this.passingFloor(elevator, floor, dir));
+            elevator.on("stopped_at_floor", (floor) => this.stoppedAtFloor(elevator, floor));
         });
         floors.forEach((floor) => {
             floor.on('up_button_pressed', () => this.buttonPressed(floor, "up"));
@@ -77,5 +100,5 @@ module.exports = {
         });
     },
     update: (dt, elevators, floors) => {
-    }   
+    }
 };
