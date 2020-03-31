@@ -1,0 +1,10 @@
+package zi.leet.mock.microsoft;
+
+/**
+ * @author balamurugan
+ */
+public class ShiftEquivalent {
+	public boolean rotateString(String A, String B) {
+		return A.length() == B.length() && (A + A).contains(B);
+	}
+}

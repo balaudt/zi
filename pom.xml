@@ -124,6 +124,12 @@
             <artifactId>javaparser-core</artifactId>
             <version>3.6.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.softwaremill.sttp/core -->
+        <dependency>
+            <groupId>com.softwaremill.sttp</groupId>
+            <artifactId>core_2.12</artifactId>
+            <version>1.7.2</version>
+        </dependency>
     </dependencies>
 
 
