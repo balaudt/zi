@@ -6,7 +6,7 @@ import java.io.{FileReader, InputStreamReader, BufferedReader}
   * Created by balaudt on 2/9/16.
   */
 object E extends App {
-  var reader = new BufferedReader(new FileReader("/Users/balaudt/Temp/feb/E-sample.in"))
+  var reader = new BufferedReader(new FileReader("/Users/balaudt/Temp/feb/E-sample.in.1"))
   var t = reader.readLine().toInt
   for (i <- 1 to t) {
     var in = reader.readLine().split(" ").map(_.toInt)

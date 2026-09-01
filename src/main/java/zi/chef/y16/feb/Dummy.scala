@@ -70,6 +70,7 @@ object Dummy extends App {
       factorials(i) = fact.toInt
       inverseFactorials(i) = BigInt.apply(fact).modInverse(PBI).toInt
     }
+
     def f(p: Int, m: Int): Int = {
       var ans = 1l
       var pm = ((factorials(p).toLong * factorials(m)) % P).toLong
@@ -88,20 +89,34 @@ object Dummy extends App {
     }
   }
 
-  Array[Double](1.0,3.0).sum
-  val s = new mutable.StringBuilder("AA");
-  var i = 0;
-  while (s.length > 0 && i < s.length) {
-    val c = s.charAt(i)
-    var j = i
-    while (j < s.length && s.charAt(j) == c) j += 1
-    if (j > i + 1) {
-      s.delete(i, j)
-      if (i > 0) i -= 1
+  def temp4 = {
+    Array[Double](1.0, 3.0).sum
+    val s = new mutable.StringBuilder("AA");
+    var i = 0;
+    while (s.length > 0 && i < s.length) {
+      val c = s.charAt(i)
+      var j = i
+      while (j < s.length && s.charAt(j) == c) j += 1
+      if (j > i + 1) {
+        s.delete(i, j)
+        if (i > 0) i -= 1
+      }
+      else {
+        i += 1
+      }
     }
-    else {
-      i += 1
-    }
+    println(if (s.length > 0) s.toString() else "-1")
   }
-  println(if (s.length > 0) s.toString() else "-1")
+
+  def temp5 = {
+    print("qpdf --empty --pages ")
+    for (i <- 1 to 18) print(s"$i.pdf 1-z ")
+    print("-- ml-lectures.pdf")
+  }
+
+  for (i <- 1 to 100) {
+    println(50 * Math.cos(Math.PI / 2 - 2 * Math.PI * i * 3.6 / 360))
+    if(i%25==0) println("------")
+  }
+
 }
